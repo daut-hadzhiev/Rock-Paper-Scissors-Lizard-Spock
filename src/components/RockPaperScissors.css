@@ -1,0 +1,27 @@
+.RockPaperScissors {
+    width: 450px;
+}
+
+.RockPaperScissors .flex {
+    display: flex;
+}
+
+.RockPaperScissors .flex p {
+    margin-bottom: 0;
+}
+
+.half-screen {
+    flex: 1 1 50%;
+}
+
+.hide {
+    display: none;
+}
+
+.content-holder {
+    min-height: 200px;
+}
+
+.pc-answer {
+    text-transform: capitalize;
+}
