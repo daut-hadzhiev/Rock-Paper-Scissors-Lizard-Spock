@@ -25,3 +25,25 @@
 .pc-answer {
     text-transform: capitalize;
 }
+
+
+#player_select {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#player_select button {
+    border: 1px solid white;
+    background: transparent;
+    color: white;
+    padding: 5px 15px;
+    flex: 1 1 auto;
+    margin: 2px;
+    cursor: pointer;
+}
+
+#player_select button:focus {
+    color: #74635b;
+    outline-color: #74635b;
+    border-color: #74635b;
+}

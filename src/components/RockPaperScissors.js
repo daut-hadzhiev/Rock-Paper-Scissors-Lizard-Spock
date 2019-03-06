@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import './RockPaperScissors.css'
+import './RockPaperScissors.css';
+import Computer from './Computer';
+import Result from './Result';
 
 class RockPaperScissors extends Component {
     constructor(state, props) {
@@ -9,7 +11,6 @@ class RockPaperScissors extends Component {
             computerResult: "",
             playerResult: "",
             result: '',
-            showbutton: false,
         };
         this.answerMap = {
             rock: ["rock", "scissors", "lizard"],
@@ -19,7 +20,7 @@ class RockPaperScissors extends Component {
             spock: ["spock", "scissors", "rock"],
         }
         this.handleClick = this.handleClick.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChoise = this.handleChoise.bind(this);
     }
 
     
@@ -32,27 +33,18 @@ class RockPaperScissors extends Component {
 
         this.setState({computerResult: values[answer][0]});
 
-        setTimeout(() => {
-            if (this.state.playerResult === this.state.computerResult) {
-                this.setState({ result: 'Draw'});
-            } else if (this.answerMap[keys[answer]].indexOf(this.state.playerResult ) >= 0 ) {
-                this.setState({ result: 'PC wins'});
-            } else {
-                this.setState({ result: 'You win'});
-            }
-        }, 1);
+        if (this.state.playerResult === this.state.computerResult) {
+            this.setState({ result: 'Draw'});
+        } else if (this.answerMap[keys[answer]].indexOf(this.state.playerResult ) >= 0 ) {
+            this.setState({ result: 'PC wins'});
+        } else {
+            this.setState({ result: 'You win'});
+        }
     }
 
-    handleChange(e) {
-        if(!e.target.value) {
-            this.setState( {showbutton: false });
-            this.setState( {playerResult: '' });
-        }
-        else {
-            this.setState( {showbutton: true });
-            this.setState( {playerResult: e.target.value });
-        }
-        
+    handleChoise(e) {
+        this.setState( {playerResult: e.target.value });
+        this.handleClick();
     }
 
     render() {
@@ -60,29 +52,19 @@ class RockPaperScissors extends Component {
             <div className="RockPaperScissors">
                 
                 <div className="flex">
+                    <Computer result={this.state.computerResult}></Computer>
                     <div className="player half-screen">
-                        <p>Computer</p>
-                        <span className="pc-answer">{this.state.computerResult}</span>
-                    </div>
-                    <div className="computer half-screen">
-                        
                         <p>Player</p>
-                        <select id="player_select" onChange={this.handleChange}>
-                            <option value="">--select--</option>
-                            <option value="rock">Rock</option>
-                            <option value="paper">Paper</option>
-                            <option value="scissors">Scissors</option>
-                            <option value="lizard">Lizard</option>
-                            <option value="spock">Spock</option>
-                        </select>
+                        <div id="player_select">
+                            <button value="rock" onClick={this.handleChoise}>Rock</button>
+                            <button value="paper" onClick={this.handleChoise}>Paper</button>
+                            <button value="scissors" onClick={this.handleChoise}>Scissors</button>
+                            <button value="lizard" onClick={this.handleChoise}>Lizard</button>
+                            <button value="spock" onClick={this.handleChoise}>Spock</button>
+                        </div>
                     </div>
                 </div>
-
-                <div className="content-holder">
-                    <button className={this.state.showbutton ?  "" : "hide"}  onClick={this.handleClick}>Draw</button>
-                    <p className={this.state.result.toLowerCase()}>{this.state.result}</p>
-                </div>
-
+                <Result result={this.state.result}></Result>
         </div>
         );
     }

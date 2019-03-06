@@ -1,0 +1,15 @@
+.result-holder p {
+    color: white;
+}
+
+p.draw {
+    color: #74635b;
+}
+
+p.you-win {
+    color: green;
+}
+
+p.pc-wins {
+    color: red;
+}
