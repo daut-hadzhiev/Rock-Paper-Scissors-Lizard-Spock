@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './RockPaperScissors.css';
 import Computer from './Computer';
 import Result from './Result';
+import Player from './Player';
 
 class RockPaperScissors extends Component {
     constructor(state, props) {
@@ -20,32 +21,36 @@ class RockPaperScissors extends Component {
             spock: ["spock", "scissors", "rock"],
         }
         this.handleClick = this.handleClick.bind(this);
-        this.handleChoise = this.handleChoise.bind(this);
     }
 
-    
+    handleClick (state) {
 
-    handleClick () {
-
+        this.setState({
+            playerResult: state
+        })
         const keys = Object.keys(this.answerMap);
         const values = Object.values(this.answerMap);
         const answer = Math.floor(Math.random() * keys.length);
 
         this.setState({computerResult: values[answer][0]});
 
-        if (this.state.playerResult === this.state.computerResult) {
-            this.setState({ result: 'Draw'});
-        } else if (this.answerMap[keys[answer]].indexOf(this.state.playerResult ) >= 0 ) {
-            this.setState({ result: 'PC wins'});
-        } else {
-            this.setState({ result: 'You win'});
-        }
+        setTimeout(() => {
+
+            if (this.state.playerResult === this.state.computerResult) {
+                this.setState({ result: 'Draw'});
+            } else if (this.answerMap[keys[answer]].indexOf(this.state.playerResult ) >= 0 ) {
+                this.setState({ result: 'PC wins'});
+            } else {
+                this.setState({ result: 'You win'});
+            }
+
+            console.log(this.state)
+        }, 1);
+        
+
     }
 
-    handleChoise(e) {
-        this.setState( {playerResult: e.target.value });
-        this.handleClick();
-    }
+    
 
     render() {
         return (
@@ -53,16 +58,7 @@ class RockPaperScissors extends Component {
                 
                 <div className="flex">
                     <Computer result={this.state.computerResult}></Computer>
-                    <div className="player half-screen">
-                        <p>Player</p>
-                        <div id="player_select">
-                            <button value="rock" onClick={this.handleChoise}>Rock</button>
-                            <button value="paper" onClick={this.handleChoise}>Paper</button>
-                            <button value="scissors" onClick={this.handleChoise}>Scissors</button>
-                            <button value="lizard" onClick={this.handleChoise}>Lizard</button>
-                            <button value="spock" onClick={this.handleChoise}>Spock</button>
-                        </div>
-                    </div>
+                    <Player onHandleChange={this.handleClick}></Player>
                 </div>
                 <Result result={this.state.result}></Result>
         </div>
