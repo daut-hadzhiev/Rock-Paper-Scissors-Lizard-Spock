@@ -32,7 +32,7 @@
     flex-flow: row wrap;
 }
 
-#player_select button {
+button {
     border: 1px solid white;
     background: transparent;
     color: white;
@@ -42,7 +42,7 @@
     cursor: pointer;
 }
 
-#player_select button:focus {
+button.active {
     color: #74635b;
     outline-color: #74635b;
     border-color: #74635b;

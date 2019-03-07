@@ -2,14 +2,14 @@
     color: white;
 }
 
-p.draw {
+p.draw, .draw {
     color: #74635b;
 }
 
-p.you-win {
+p.you-win, .you-win {
     color: green;
 }
 
-p.pc-wins {
+p.pc-wins, .pc-wins {
     color: red;
 }
