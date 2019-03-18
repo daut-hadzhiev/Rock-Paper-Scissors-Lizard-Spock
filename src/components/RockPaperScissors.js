@@ -58,7 +58,6 @@ class RockPaperScissors extends Component {
                 });
             }
 
-            console.log(this.state)
         }, 1);
     }
 
@@ -79,19 +78,25 @@ class RockPaperScissors extends Component {
             <div className="RockPaperScissors">
                 
                 <div className="flex">
+
                     <Computer result={this.state.computerResult}></Computer>
+
                     <Player
                         onHandleChange={this.handleClick}
                         playerResult={this.state.playerResult}
                     ></Player>
+
                 </div>
+
                 <Result result={this.state.result}></Result>
+
                 <ScoreBoard
                     computerWins={this.state.computerWins}
                     playerWins={this.state.playerWins}
                     drawGames={this.state.drawGames}
                     onResetCounter={this.resetCounter}
-                ></ScoreBoard> 
+                ></ScoreBoard>
+                
         </div>
         );
     }

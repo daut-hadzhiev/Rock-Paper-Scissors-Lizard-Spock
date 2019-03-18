@@ -1,41 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class ScoreBoard extends Component {
-    constructor(state, props) {
-        super(state, props);
-        this.resetCounter = this.resetCounter.bind(this);
-    }
+const ScoreBoard = props => (
+        <div className="score-board">
+            <h3>Score</h3>
 
-
-    resetCounter() {
-        this.props.onResetCounter();
-    }
-
-    render () {
-        return (
-            <div className="score-board">
-                <h3>Score</h3>
-
-                <div class="you-win">
-                    <span>Player wins: </span>
-                    <span>{this.props.playerWins}</span>
-                </div>
-
-                <div class="pc-wins">
-                    <span>Computer wins: </span>
-                    <span>{this.props.computerWins}</span>
-                </div>
-
-                <div class="draw">
-                    <span>Draw games: </span>
-                    <span>{this.props.drawGames}</span>
-                </div>
-
-                <button onClick={this.resetCounter}>Reset</button>
-                
+            <div className="you-win">
+                <span>Player wins: </span>
+                <span>{props.playerWins}</span>
             </div>
-        )
-    }
-}
+
+            <div className="pc-wins">
+                <span>Computer wins: </span>
+                <span>{props.computerWins}</span>
+            </div>
+
+            <div className="draw">
+                <span>Draw games: </span>
+                <span>{props.drawGames}</span>
+            </div>
+
+            <button onClick={() => props.onResetCounter()}>Reset</button>
+            
+        </div>
+    );
 
 export default ScoreBoard;

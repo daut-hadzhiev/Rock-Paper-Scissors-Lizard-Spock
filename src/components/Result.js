@@ -1,21 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Result.css';
 
 
-class Result extends Component { 
-    constructor( props) {
-        super(props);
-        this.state = {
-        };
-    }
-    render () {
-        return (
-            <div className="result-holder">
-                <p className={this.props.result.toLowerCase().split(" ").join("-")}>{this.props.result ? this.props.result : "Result" }</p>
-            </div>
-        )
-    }
-}
+const Result = props => (
+        <div className="result-holder">
+            <p className={props.result.toLowerCase().split(" ").join("-")}>{props.result ? props.result : "Result" }</p>
+        </div>
+    )
 
 export default Result;
 
