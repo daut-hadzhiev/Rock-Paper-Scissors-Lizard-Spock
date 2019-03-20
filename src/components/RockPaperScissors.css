@@ -43,7 +43,7 @@ button {
 }
 
 button.active {
-    color: #74635b;
-    outline-color: #74635b;
-    border-color: #74635b;
+    color: #88eeff;
+    outline-color: #88eeff;
+    border-color: #88eeff;
 }

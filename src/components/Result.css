@@ -3,13 +3,13 @@
 }
 
 p.draw, .draw {
-    color: #74635b;
+    color: #88eeff;
 }
 
 p.you-win, .you-win {
-    color: green;
+    color: #008800;
 }
 
 p.pc-wins, .pc-wins {
-    color: red;
+    color: #ffaa33;
 }
