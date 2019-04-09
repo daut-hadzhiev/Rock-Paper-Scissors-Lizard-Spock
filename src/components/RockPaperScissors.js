@@ -21,6 +21,10 @@ class RockPaperScissors extends Component {
         this.props.Action__setChoice(event);
     }
 
+    Action__SetValue = (event) => {
+        this.props.Action__SetValue(5);
+    }
+
     constructor(state, props) {
         super(state, props);
         this.state = {

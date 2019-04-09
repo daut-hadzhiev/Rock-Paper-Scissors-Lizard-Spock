@@ -1,36 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setVisibilityFilter } from './actions/actions';
 
 import './App.css';
-import RockPaperScissors from './components/RockPaperScissors'
+import RockPaperScissors from './components/RockPaperScissors';
+import { setValue, setChoice  } from './actions/actions';
 
-const mapDispatchToProps = dispatch => ({
-	setVisibilityFilter__SHOW_ALL: () => dispatch(setVisibilityFilter("SHOW_ALL")),
-	setVisibilityFilter__SHOW_COMPLETED: () => dispatch(setVisibilityFilter("SHOW_COMPLETED")),
-	setVisibilityFilter__SHOW_ACTIVE: () => dispatch(setVisibilityFilter("SHOW_ACTIVE"))
-});
-
-// const setFilters = dispatch => ({
-// 	setVisibilityFilter: () => dispatch(setVisibilityFilter()) 
-// })
 
 const mapStateToProps = state => ({...state});
-
+const mapDispatchToProps = dispatch => ({
+	Action__SetValue: (weaponType) => dispatch(setValue(weaponType)),
+	Action__setChoice: (weaponType) => dispatch(setChoice(weaponType))
+});
 
 class App extends Component {
 
     
     setVisibilityFilter__SHOW_ALL = (event) => {
-		this.props.setVisibilityFilter__SHOW_ALL();
+		this.props.Action__SetValue(1);
     };
     
     setVisibilityFilter__SHOW_COMPLETED = (event) => {
-		this.props.setVisibilityFilter__SHOW_COMPLETED();
+		this.props.Action__SetValue(2);
     };
     
     setVisibilityFilter__SHOW_ACTIVE = (event) => {
-		this.props.setVisibilityFilter__SHOW_ACTIVE();
+		this.props.Action__SetValue(3);
 	};
 
 	render() {
