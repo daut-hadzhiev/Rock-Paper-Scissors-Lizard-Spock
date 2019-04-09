@@ -1,11 +1,26 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './RockPaperScissors.css';
 import Computer from './Computer';
 import Result from './Result';
 import Player from './Player';
 import ScoreBoard from './ScoreBoard';
+import { setValue, setChoice  } from '../actions/actions';
+
+
+const mapDispatchToProps = dispatch => ({
+    Action__SetValue: (weaponType) => dispatch(setValue(weaponType)),
+    Action__setChoice: (weaponType) => dispatch(setChoice(weaponType))
+});
+
+const mapStateToProps = state => ({...state});
 
 class RockPaperScissors extends Component {
+
+    Action__setChoice = (event) => {
+        this.props.Action__setChoice(event);
+    }
+
     constructor(state, props) {
         super(state, props);
         this.state = {
@@ -28,11 +43,17 @@ class RockPaperScissors extends Component {
         this.resetCounter = this.resetCounter.bind(this);
     }
 
-    handleClick (state) {
+    
+
+    handleClick (playerChoice) {
 
         this.setState({
-            playerResult: state
+            playerResult: playerChoice
         })
+
+        this.Action__setChoice(playerChoice);
+
+         
         const keys = Object.keys(this.answerMap);
         const values = Object.values(this.answerMap);
         const answer = Math.floor(Math.random() * keys.length);
@@ -102,4 +123,4 @@ class RockPaperScissors extends Component {
     }
 }
 
-export default RockPaperScissors;
+export default connect(mapStateToProps, mapDispatchToProps)(RockPaperScissors);
